@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1414. Find the Minimum Numb
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2. Add Two Numbers", "2. Add Two Numbers\2. Add Two Numbers.vcxproj", "{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4. Median of Two Sorted Arrays", "4. Median of Two Sorted Arrays\4. Median of Two Sorted Arrays.csproj", "{D3DD73D1-318A-4C58-A2CC-914AD7318E33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,18 @@ Global
 		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Release|x64.Build.0 = Release|x64
 		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Release|x86.ActiveCfg = Release|Win32
 		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Release|x86.Build.0 = Release|Win32
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Debug|x64.Build.0 = Debug|Any CPU
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Debug|x86.Build.0 = Debug|Any CPU
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Release|x64.ActiveCfg = Release|Any CPU
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Release|x64.Build.0 = Release|Any CPU
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Release|x86.ActiveCfg = Release|Any CPU
+		{D3DD73D1-318A-4C58-A2CC-914AD7318E33}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
