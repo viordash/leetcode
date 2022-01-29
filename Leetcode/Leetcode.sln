@@ -5,16 +5,40 @@ VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1414. Find the Minimum Number of Fibonacci Numbers Whose Sum Is K", "1414. Find the Minimum Number of Fibonacci Numbers Whose Sum Is K\1414. Find the Minimum Number of Fibonacci Numbers Whose Sum Is K.csproj", "{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2. Add Two Numbers", "2. Add Two Numbers\2. Add Two Numbers.vcxproj", "{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Debug|x64.Build.0 = Debug|Any CPU
+		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Debug|x86.Build.0 = Debug|Any CPU
 		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Release|x64.ActiveCfg = Release|Any CPU
+		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Release|x64.Build.0 = Release|Any CPU
+		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Release|x86.ActiveCfg = Release|Any CPU
+		{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}.Release|x86.Build.0 = Release|Any CPU
+		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Debug|x64.ActiveCfg = Debug|x64
+		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Debug|x64.Build.0 = Debug|x64
+		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Debug|x86.ActiveCfg = Debug|Win32
+		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Debug|x86.Build.0 = Debug|Win32
+		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Release|Any CPU.ActiveCfg = Release|Win32
+		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Release|x64.ActiveCfg = Release|x64
+		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Release|x64.Build.0 = Release|x64
+		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Release|x86.ActiveCfg = Release|Win32
+		{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
