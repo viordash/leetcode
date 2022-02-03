@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1414. Find the Minimum Number of Fibonacci Numbers Whose Sum Is K", "1414. Find the Minimum Number of Fibonacci Numbers Whose Sum Is K\1414. Find the Minimum Number of Fibonacci Numbers Whose Sum Is K.csproj", "{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1414. Find the Minimum Number of Fibonacci Numbers Whose Sum Is K", "1414. Find the Minimum Number of Fibonacci Numbers Whose Sum Is K\1414. Find the Minimum Number of Fibonacci Numbers Whose Sum Is K.csproj", "{1E2F7DE9-046D-41CF-ADEE-DEBFF328CDC1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2. Add Two Numbers", "2. Add Two Numbers\2. Add Two Numbers.vcxproj", "{3A4306E0-ADF2-4CFD-B205-712DA9C5BAFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4. Median of Two Sorted Arrays", "4. Median of Two Sorted Arrays\4. Median of Two Sorted Arrays.csproj", "{D3DD73D1-318A-4C58-A2CC-914AD7318E33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4. Median of Two Sorted Arrays", "4. Median of Two Sorted Arrays\4. Median of Two Sorted Arrays.csproj", "{D3DD73D1-318A-4C58-A2CC-914AD7318E33}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "907. Sum of Subarray Minimums", "907. Sum of Subarray Minimums\907. Sum of Subarray Minimums.vcxproj", "{2A9991B0-7581-4798-822D-6EBFCBC32CD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3. Longest Substring Without Repeating Characters", "3. Longest Substring Without Repeating Characters\3. Longest Substring Without Repeating Characters.csproj", "{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,18 @@ Global
 		{2A9991B0-7581-4798-822D-6EBFCBC32CD9}.Release|x64.Build.0 = Release|x64
 		{2A9991B0-7581-4798-822D-6EBFCBC32CD9}.Release|x86.ActiveCfg = Release|Win32
 		{2A9991B0-7581-4798-822D-6EBFCBC32CD9}.Release|x86.Build.0 = Release|Win32
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Debug|x64.Build.0 = Debug|Any CPU
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Debug|x86.Build.0 = Debug|Any CPU
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Release|x64.ActiveCfg = Release|Any CPU
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Release|x64.Build.0 = Release|Any CPU
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Release|x86.ActiveCfg = Release|Any CPU
+		{CA283EF5-4A4C-4055-A2BF-AEC2FDB588B2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
