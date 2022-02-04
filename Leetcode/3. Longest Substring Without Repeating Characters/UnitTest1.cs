@@ -11,6 +11,30 @@ namespace _3._Longest_Substring_Without_Repeating_Characters {
 		}
 
 		public int LengthOfLongestSubstring(string s) {
+
+			var grouped = s.GroupBy(
+				ch => ch,
+				x => x,
+				(ch, chars) => new {
+					Char = ch,
+					Count = chars.Count()
+				});
+
+			var grouped1 = s
+				.Select((x, i) => new {
+					Index = i,
+					Char = x
+				})
+				.GroupBy(
+					k => k.Char,
+					x => x.Index)
+				.Where(x => x.Count() > 1);
+
+			var multi = grouped1
+				.SelectMany(x => x)
+				.OrderBy(x => x);
+
+
 			var maxLen = 0;
 			var chars = new List<char>();
 			foreach(var ch in s) {
@@ -20,7 +44,7 @@ namespace _3._Longest_Substring_Without_Repeating_Characters {
 						maxLen = chars.Count;
 					}
 					chars.RemoveRange(0, exist + 1);
-					//chars = new List<char>(chars.Skip(exist));
+					//chars = new List<char>(chars.Skip(exist + 1));
 				}
 				chars.Add(ch);
 			}
@@ -29,7 +53,6 @@ namespace _3._Longest_Substring_Without_Repeating_Characters {
 			}
 			return maxLen;
 		}
-
 
 		[Test]
 		public void Test1() {
