@@ -12,17 +12,8 @@ namespace _3._Longest_Substring_Without_Repeating_Characters {
 
 		public int LengthOfLongestSubstring(string s) {
 
-			//var grouped = s.GroupBy(
-			//	ch => ch,
-			//	x => x,
-			//	(ch, chars) => new {
-			//		Char = ch,
-			//		Count = chars.Count()
-			//	});
-
 
 			var grouped = s
-				.Append(s.First())
 				.Select((x, i) => new { Index = i, Char = x })
 				.GroupBy(k => k.Char, x => x.Index)
 				.Where(x => x.Count() > 1)
@@ -31,29 +22,19 @@ namespace _3._Longest_Substring_Without_Repeating_Characters {
 			var distances = grouped
 			.Select(x => {
 				return new {
-					Index = x.First(), To = grouped
+					Index = x.First(),
+					To = grouped
 						.Where(k => k.First() > x.First())
 						.Select(k => k
 							.Skip(1)
 							.Select(nextPoint => nextPoint - x.First())
+							.ToArray()
 						)
+						.Append(new int[] { s.Length - x.First() })
+						.ToList()
 				};
-			});
-
-			var grouped1 = s
-				.Select((x, i) => new {
-					Index = i,
-					Char = x
-				})
-				.GroupBy(
-					k => k.Char,
-					x => x.Index)
-				.Where(x => x.Count() > 1);
-
-			var multi = grouped1
-				.SelectMany(x => x)
-				.OrderBy(x => x);
-
+			})
+			.ToList();
 
 			var maxLen = 0;
 			var chars = new List<char>();
@@ -108,6 +89,12 @@ namespace _3._Longest_Substring_Without_Repeating_Characters {
 		[Test]
 		public void Test4() {
 			var res = LengthOfLongestSubstring("qopubjguxhxdipfzwswybgfylqvjzhar");
+			Assert.That(res, Is.EqualTo(12));
+		}
+
+		[Test]
+		public void Test5() {
+			var res = LengthOfLongestSubstring("qopuxbjguxhdipfxzwswybgfylqvjzhar");
 			Assert.That(res, Is.EqualTo(12));
 		}
 	}
