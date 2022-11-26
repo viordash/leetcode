@@ -282,13 +282,13 @@ public:
 	int sumSubarrayMins7_2(int* arr, int arrSize) {
 		long long sum = 0;
 
-		int right;
+		int* elem = arr;
 		int* arrEnd = arr + arrSize;
-		for (int i = 0; i < arrSize; i++) {
+		while (elem < arrEnd) {
 			int left;
 
-			int curr = arr[i];
-			int* pos = &arr[i];
+			int* pos = elem;
+			int curr = *pos;
 
 			int* posL = pos;
 			while (--posL >= arr) {
@@ -298,16 +298,22 @@ public:
 			}
 			left = (pos - posL) - 1;
 
+
 			int self = 1;
 			int* posR = pos + 1;
 			if (posR < arrEnd) {
-
-				if (*posR == curr) {
+				if (*posR > curr) {
+					while (++posR < arrEnd) {
+						if (*posR < curr) {
+							break;
+						}
+					}
+				} else if (*posR == curr) {
 					int identicalCount = 0;
 					do {
 						identicalCount++;
 					} while (++posR < arrEnd && *posR == curr);
-					i += identicalCount;
+					elem += identicalCount;
 
 
 					while (posR < arrEnd && *posR >= curr) {
@@ -317,20 +323,15 @@ public:
 
 					int arithPrgr = identicalCount * (identicalCount + 1) / 2;
 					self += arithPrgr;
-				} else if (*posR > curr) {
-					while (++posR < arrEnd) {
-						if (*posR < curr) {
-							break;
-						}
-					}
 				}
 			}
-			right = (posR - pos) - 1;
+			int right = (posR - pos) - 1;
 
 			int whole = (left > 0 && right > 0) ? 1 : 0;
 			int inner = whole > 0 ? (left * right) - 1 : 0;
 			int count = self + left + whole + inner + right;
 			sum += curr * count;
+			elem++;
 
 		}
 		return sum % 1000000007;
