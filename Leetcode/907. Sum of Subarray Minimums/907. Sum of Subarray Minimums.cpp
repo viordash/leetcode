@@ -348,11 +348,11 @@ public:
 
 				posR = pos + 1;
 				if (posR < arrEnd) {
-					if (*posR > curr) {
+					if (*posR >= curr) {
 
 						int prev = *posR;
 						if (++posR < arrEnd) {
-							if (prev < *posR) {
+							if (prev <= *posR) {
 								rampingUp = 2;
 								prev = *posR;
 								while (++posR < arrEnd && prev <= *posR) {
@@ -368,23 +368,6 @@ public:
 								posR++;
 							}
 						}
-						right = (posR - pos) - 1;
-
-					} else if (*posR == curr) {
-						int identicalCount = 0;
-						do {
-							identicalCount++;
-						} while (++posR < arrEnd && *posR == curr);
-						elem += identicalCount;
-
-
-						while (posR < arrEnd && *posR >= curr) {
-							posR++;
-							self += identicalCount;
-						}
-
-						int arithPrgr = identicalCount * (identicalCount + 1) / 2;
-						self += arithPrgr;
 						right = (posR - pos) - 1;
 
 					} else {
