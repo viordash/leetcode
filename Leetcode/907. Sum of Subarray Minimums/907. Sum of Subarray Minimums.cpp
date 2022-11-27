@@ -226,95 +226,6 @@ public:
 		int* elem = arr;
 		int* arrEnd = arr + arrSize;
 		while (elem < arrEnd) {
-			int left;
-
-			int* pos = elem;
-			int curr = *pos;
-
-			int* posL = pos;
-			while (--posL >= arr) {
-				if (*posL <= curr) {
-					break;
-				}
-			}
-			left = (pos - posL) - 1;
-
-
-
-			int self = 1;
-			int* posR;
-
-			if (rampingUp > 0) {
-				rampingUp--;
-				posR = pos + rampingUp;
-				while (++posR < arrEnd) {
-					if (*posR < curr) {
-						break;
-					}
-				}
-			} else {
-				posR = pos + 1;
-				if (posR < arrEnd) {
-					if (*posR > curr) {
-
-						int prev = *posR;
-						if (++posR < arrEnd) {
-							if (prev < *posR) {
-								rampingUp = 2;
-								prev = *posR;
-								while (++posR < arrEnd && prev <= *posR) {
-									rampingUp++;
-									prev = *posR;
-								}
-
-							}
-
-							while (posR < arrEnd) {
-								if (*posR < curr) {
-									break;
-								}
-								posR++;
-							}
-
-						}
-
-					} else if (*posR == curr) {
-						int identicalCount = 0;
-						do {
-							identicalCount++;
-						} while (++posR < arrEnd && *posR == curr);
-						elem += identicalCount;
-
-
-						while (posR < arrEnd && *posR >= curr) {
-							posR++;
-							self += identicalCount;
-						}
-
-						int arithPrgr = identicalCount * (identicalCount + 1) / 2;
-						self += arithPrgr;
-					}
-				}
-			}
-			int right = (posR - pos) - 1;
-
-			long whole = (left > 0 && right > 0) ? 1 : 0;
-			long inner = whole > 0 ? (left * right) - 1 : 0;
-			long count = self + left + whole + inner + right;
-			sum += curr * (long long)count;
-			elem++;
-
-		}
-		return sum % 1000000007;
-	}
-
-	int sumSubarrayMins7_2(int* arr, int arrSize) {
-		long long sum = 0;
-
-		int rampingUp = 0;
-		int* elem = arr;
-		int* arrEnd = arr + arrSize;
-		while (elem < arrEnd) {
 			int* pos = elem;
 			int curr = *pos;
 
@@ -384,6 +295,81 @@ public:
 			sum += curr * (long long)count;
 			elem++;
 
+		}
+		return sum % 1000000007;
+	}
+
+	int sumSubarrayMins7_2(int* arr, int arrSize) {
+		long long sum = 0;
+
+		int rampingUp = 0;
+		int* elem = arr;
+		int* arrEnd = arr + arrSize;
+		while (elem < arrEnd) {
+			int* pos = elem++;
+			int curr = *pos;
+
+			int* posR;
+			int left;
+			int right;
+
+			if (rampingUp > 0) {
+				rampingUp--;
+
+				left = 1;
+
+				posR = pos + rampingUp;
+				while (++posR < arrEnd) {
+					if (*posR < curr) {
+						break;
+					}
+				}
+				right = (posR - pos);
+
+			} else {
+				int* posL = pos;
+				while (--posL >= arr) {
+					if (*posL <= curr) {
+						break;
+					}
+				}
+				left = (pos - posL);
+
+
+				posR = pos + 1;
+				if (posR < arrEnd) {
+					if (*posR >= curr) {
+
+						int prev = *posR;
+						if (++posR < arrEnd) {
+							if (prev <= *posR) {
+								rampingUp = 2;
+								prev = *posR;
+								while (++posR < arrEnd && prev <= *posR) {
+									rampingUp++;
+									prev = *posR;
+								}
+							}
+
+							while (posR < arrEnd) {
+								if (*posR < curr) {
+									break;
+								}
+								posR++;
+							}
+						}
+						right = (posR - pos);
+
+					} else {
+						right = 1;
+					}
+				} else {
+					right = 1;
+				}
+			}
+
+			long count = left * right;
+			sum += curr * count;
 		}
 		return sum % 1000000007;
 	}
