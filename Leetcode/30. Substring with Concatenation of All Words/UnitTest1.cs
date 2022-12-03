@@ -11,54 +11,47 @@ namespace _30._Substring_with_Concatenation_of_All_Words {
         public void Setup() {
         }
 
-
-        IEnumerable<int> AllSubstrings(string s, string substr) {
-            int i = 0;
-            while((i = s.IndexOf(substr, i)) >= 0) {
-                yield return i;
-                i++;
-            }
-        }
-
         public IList<int> FindSubstring(string s, string[] words) {
             var result = new List<int>();
             var len = words[0].Length;
             var totalLen = len * words.Length;
             var lastPos = s.Length - totalLen;
 
-
-            var occurrences = new Dictionary<int, int>();
-
-            for(int i = 0; i < words.Length; i++) {
-                foreach(var k in AllSubstrings(s, words[i])) {
-                    occurrences.TryAdd(k, i);
-                }
-            }
-
-            var ordered = occurrences
-                .OrderBy(x => x.Key)
+            var wordsAsMem = words
+                .Select((x, i) => new { word = x.AsMemory(), index = i })
                 .ToList();
 
-            var wordsIndexes = new List<int>();
-            var index = 0;
-            while(index < ordered.Count - 1) {
-                var prev = ordered[index++];
-                var item = ordered[index];
+            int i = 0;
+            var mem = s.AsMemory();
+            while(i <= s.Length - totalLen) {
+                var substr = mem.Slice(i, len);
 
-                int delta = item.Key - prev.Key;
-                if(delta == len) {
-                    wordsIndexes.Add(prev.Value);
-                    if(wordsIndexes.Count == words.Length - 1) {
-                        wordsIndexes.Add(item.Value);
-                        index -= (wordsIndexes.Count - 2);
-                        if(wordsIndexes.Distinct().Count() == words.Length) {
-                            result.Add(ordered[index - 1].Key);
+                var possibly = wordsAsMem.FirstOrDefault(x => substr.Span.SequenceEqual(x.word.Span));
+                if(possibly != null) {
+                    var restOfWords = wordsAsMem
+                            .Where(x => x.index != possibly.index)
+                            .ToList();
+
+                    int k = i + len;
+                    while(restOfWords.Count > 0 && k <= s.Length - len) {
+                        substr = mem.Slice(k, len);
+                        possibly = restOfWords.FirstOrDefault(x => substr.Span.SequenceEqual(x.word.Span));
+                        if(possibly != null) {
+                            restOfWords = restOfWords
+                                .Where(x => x.index != possibly.index)
+                                .ToList();
+                            k += len;
+                        } else {
+                            break;
                         }
-                        wordsIndexes.Clear();
+
                     }
-                } else {
-                    wordsIndexes.Clear();
+                    if(restOfWords.Count == 0) {
+                        result.Add(i);
+                        i += len - 1;
+                    }
                 }
+                i++;
             }
             return result;
         }
