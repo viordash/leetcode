@@ -15,7 +15,6 @@ namespace _30._Substring_with_Concatenation_of_All_Words {
             var result = new List<int>();
             var len = words[0].Length;
             var totalLen = len * words.Length;
-            var lastPos = s.Length - totalLen;
 
             var wordsAsMem = words
                 .Select(x => x.AsMemory())
