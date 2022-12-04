@@ -28,25 +28,23 @@ namespace _30._Substring_with_Concatenation_of_All_Words {
 
                 var possibly = wordsAsMem.FirstOrDefault(x => substr.Span.SequenceEqual(x.word.Span));
                 if(possibly != null) {
-                    var restOfWords = wordsAsMem
-                            .Where(x => x.index != possibly.index)
-                            .ToList();
-
+                    var restOfWords = wordsAsMem.ToList();
+                    restOfWords[possibly.index] = null;
+                    int count = restOfWords.Count - 1;
                     int k = i + len;
-                    while(restOfWords.Count > 0 && k <= s.Length - len) {
+                    while(count > 0 && k <= s.Length - len) {
                         substr = mem.Slice(k, len);
-                        possibly = restOfWords.FirstOrDefault(x => substr.Span.SequenceEqual(x.word.Span));
+                        possibly = restOfWords.FirstOrDefault(x => x != null && substr.Span.SequenceEqual(x.word.Span));
                         if(possibly != null) {
-                            restOfWords = restOfWords
-                                .Where(x => x.index != possibly.index)
-                                .ToList();
+                            restOfWords[possibly.index] = null;
+                            count--;
                             k += len;
                         } else {
                             break;
                         }
 
                     }
-                    if(restOfWords.Count == 0) {
+                    if(count == 0) {
                         result.Add(i);
                     }
                 }
