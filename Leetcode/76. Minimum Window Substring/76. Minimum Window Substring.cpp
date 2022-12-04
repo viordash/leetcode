@@ -46,15 +46,19 @@ public:
 		return i;
 	}
 
-	static int getMinDistance(int* positions, size_t length, int* start) {
+	static int getMinDistance(int* positions, size_t length, int* start, int* skip) {
 		int min = INT_MAX;
 		int max = INT_MIN;
+		*skip = 1;
 		for (size_t i = 0; i < length; i++) {
 			if (min > positions[i]) {
 				min = positions[i];
 			}
 			if (max < positions[i]) {
 				max = positions[i];
+			}
+			if (*skip == positions[i]) {
+				(*skip)++;
 			}
 		}
 
@@ -74,12 +78,13 @@ public:
 				break;
 			}
 			int start;
-			int distance = getMinDistance(positions, length, &start);
+			int skip;
+			int distance = getMinDistance(positions, length, &start, &skip);
 			if (minDistance >= distance) {
 				minDistance = distance;
 				sMinWindow = &s[start];
 			}
-			s++;
+			s += skip;
 		}
 		free(positions);
 
