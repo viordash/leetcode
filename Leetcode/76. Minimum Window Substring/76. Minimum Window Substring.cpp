@@ -7,38 +7,38 @@ namespace My76MinimumWindowSubstring {
 	TEST_CLASS(My76MinimumWindowSubstring) {
 public:
 
-	static int find(char* s, char* t, int* positions, size_t length) {
+	static int find(char* s, char* t, char* marker) {
 		char* p = s;
 		char* ch;
 		size_t strt = 0;
 
-		int* tempPositions = positions;
-		int* positionsEnd = positions + length;
 		while ((ch = strchr(p, *t)) != NULL) {
 			int pos = ch - s;
 			bool wasFound = false;
 
-			while (tempPositions < positionsEnd) {
-				if (*tempPositions++ == pos) {
-					wasFound = true;
-					p = ch + 1;
-					break;
-				}
+			if (marker[pos] != 0) {
+				wasFound = true;
+				p = ch + 1;
+			} else {
+				marker[pos] = 1;
 			}
+
 			if (!wasFound) {
 				break;
 			}
-
+		}
+		if (ch == NULL) {
+			return -1;
 		}
 		return ch - s;
 	}
 
-	static size_t fillPositions(char* s, char* t, int* positions) {
+	static size_t fillPositions(char* s, char* t, int* positions, char* marker) {
 		size_t i = 0;
 		char* p = s;
 		while (*t != 0) {
 
-			int pos = find(s, t, positions, i);
+			int pos = find(s, t, marker);
 			if (pos < 0) {
 				return 0;
 			}
@@ -73,12 +73,15 @@ public:
 	}
 
 	char* minWindow(char* s, char* t) {
-		int* positions = (int*)malloc(100000 * sizeof(int));
+		int sLen = strlen(s);
+		int* positions = (int*)malloc(sLen * sizeof(int));
+		char* marker = (char*)malloc(sLen * sizeof(char));
 
 		char* sMinWindow = "";
 		int minDistance = 100000;
 		while (*s != 0) {
-			size_t length = fillPositions(s, t, positions);
+			memset(marker, 0, sLen);
+			size_t length = fillPositions(s, t, positions, marker);
 			if (length == 0) {
 				break;
 			}
@@ -91,6 +94,7 @@ public:
 			}
 			s += skip;
 		}
+		free(marker);
 		free(positions);
 
 		static char output[100000 + 1];
