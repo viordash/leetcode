@@ -11,14 +11,17 @@ public:
 		char* p = s;
 		char* ch;
 		size_t strt = 0;
+
+		int* tempPositions = positions;
+		int* positionsEnd = positions + length;
 		while ((ch = strchr(p, *t)) != NULL) {
 			int pos = ch - s;
 			bool wasFound = false;
-			for (size_t i = strt; i < length; i++) {
-				if (positions[i] == pos) {
+
+			while (tempPositions < positionsEnd) {
+				if (*tempPositions++ == pos) {
 					wasFound = true;
 					p = ch + 1;
-					strt = i + 1;
 					break;
 				}
 			}
@@ -50,14 +53,16 @@ public:
 		int min = INT_MAX;
 		int max = INT_MIN;
 		*skip = 1;
-		for (size_t i = 0; i < length; i++) {
-			if (min > positions[i]) {
-				min = positions[i];
+		int* positionsEnd = positions + length;
+		while (positions < positionsEnd) {
+			int pos = *positions++;
+			if (min > pos) {
+				min = pos;
 			}
-			if (max < positions[i]) {
-				max = positions[i];
+			if (max < pos) {
+				max = pos;
 			}
-			if (*skip == positions[i]) {
+			if (*skip == pos) {
 				(*skip)++;
 			}
 		}
