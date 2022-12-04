@@ -9,12 +9,13 @@ public:
 
 	size_t fillPositions(char* s, char* t, int* positions) {
 		size_t i = 0;
+		char* p = s;
 		while (*t != 0) {
-			char* ch = strchr(s, *t);
+			char* ch = strchr(p, *t);
 			if (ch != NULL) {
 				int pos = ch - s;
 				if (pos == 0) {
-					s++;
+					p++;
 				}
 				positions[i] = pos;
 			} else {
@@ -26,7 +27,7 @@ public:
 		return i;
 	}
 
-	int getMinDistance(int* positions, size_t length) {
+	int getMinDistance(int* positions, size_t length, int* nextChar) {
 		int min = INT_MAX;
 		int max = INT_MIN;
 		for (size_t i = 0; i < length; i++) {
@@ -37,7 +38,14 @@ public:
 				max = positions[i];
 			}
 		}
-		return max - min;
+		int minDistance = max - min;
+		*nextChar = max;
+		for (size_t i = 0; i < length; i++) {
+			if (*nextChar > positions[i] && positions[i] > min) {
+				*nextChar = positions[i];
+			}
+		}
+		return minDistance;
 	}
 
 	char* minWindow(char* s, char* t) {
@@ -50,12 +58,18 @@ public:
 			if (length == 0) {
 				break;
 			}
-			int distance = getMinDistance(positions, length);
+			int leftChar;
+			int distance = getMinDistance(positions, length, &leftChar);
 			if (minDistance >= distance) {
 				minDistance = distance;
 				sMinWindow = s;
 			}
-			s++;
+
+			if (leftChar == 0) {
+				s++;
+			} else {
+				s += leftChar;
+			}
 		}
 		free(positions);
 		return sMinWindow;
