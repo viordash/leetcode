@@ -18,7 +18,7 @@ namespace _30._Substring_with_Concatenation_of_All_Words {
             var lastPos = s.Length - totalLen;
 
             var wordsAsMem = words
-                .Select((x, i) => new { word = x.AsMemory(), index = i })
+                .Select(x => x.AsMemory())
                 .ToList();
 
             int i = 0;
@@ -26,17 +26,17 @@ namespace _30._Substring_with_Concatenation_of_All_Words {
             while(i <= s.Length - totalLen) {
                 var substr = mem.Slice(i, len);
 
-                var possibly = wordsAsMem.FirstOrDefault(x => substr.Span.SequenceEqual(x.word.Span));
-                if(possibly != null) {
-                    var restOfWords = wordsAsMem.ToList();
-                    restOfWords[possibly.index] = null;
-                    int count = restOfWords.Count - 1;
+                var index = wordsAsMem.FindIndex(x => substr.Span.SequenceEqual(x.Span));
+                if(index >= 0) {
+                    var tempWords = wordsAsMem.ToList();
+                    tempWords[index] = null;
+                    int count = tempWords.Count - 1;
                     int k = i + len;
                     while(count > 0 && k <= s.Length - len) {
                         substr = mem.Slice(k, len);
-                        possibly = restOfWords.FirstOrDefault(x => x != null && substr.Span.SequenceEqual(x.word.Span));
-                        if(possibly != null) {
-                            restOfWords[possibly.index] = null;
+                        index = tempWords.FindIndex(x => substr.Span.SequenceEqual(x.Span));
+                        if(index >= 0) {
+                            tempWords[index] = null;
                             count--;
                             k += len;
                         } else {
