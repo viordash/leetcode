@@ -127,18 +127,7 @@ public:
 
 		}
 
-		//while (*t != 0) {
-		//	getOccurrences(s, *t, &charsOccurrences[count]);
-		//	if (charsOccurrences[count].Count == 0) {
-		//		break;
-		//	}
-		//	count++;
-		//	t++;
-		//}
 
-		//for (size_t i = 0; i < count; i++) {
-		//	free(charsOccurrences[i].Positions);
-		//}
 
 
 		for (size_t i = 0; i < count; i++) {
