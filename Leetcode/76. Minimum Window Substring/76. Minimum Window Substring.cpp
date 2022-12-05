@@ -50,6 +50,9 @@ public:
 		return i;
 	}
 
+
+
+
 	static int getMinDistance(int* positions, size_t length, int* start) {
 		int min = INT_MAX;
 		int max = INT_MIN;
@@ -68,8 +71,82 @@ public:
 		return minDistance;
 	}
 
+	/*
+
+	*/
+
+	typedef struct {
+		int* Positions;
+		int Count;
+	} TCharOccurrences;
+
+	static void getOccurrences(char* s, char t, TCharOccurrences* charOccurrences) {
+		char* p = s;
+		char* ch;
+		size_t strt = 0;
+
+		charOccurrences->Count = 0;
+		charOccurrences->Positions = (int*)malloc(100000 * sizeof(int));
+		if (charOccurrences->Positions == NULL) {
+			return;
+		}
+
+		while ((ch = strchr(p, t)) != NULL) {
+			p = ch + 1;
+			int pos = ch - s;
+			charOccurrences->Positions[charOccurrences->Count] = pos;
+			charOccurrences->Count++;
+		}
+
+		int* tPositions = (int*)realloc(charOccurrences->Positions, charOccurrences->Count * sizeof(int));
+		if (tPositions == NULL) {
+			charOccurrences->Count = 0;
+		} else {
+			charOccurrences->Positions = tPositions;
+		}
+	}
+
 	char* minWindow(char* s, char* t) {
-		int sLen = strlen(s);
+		int tLen = strlen(t);
+		TCharOccurrences* charsOccurrences = (TCharOccurrences*)malloc(tLen * sizeof(TCharOccurrences));
+		if (charsOccurrences == NULL) {
+			return "";
+		}
+		TCharOccurrences* tempCharsOccurrences = charsOccurrences;
+		for (size_t i = 0; i < tLen; i++) {
+			getOccurrences(s, t[i], tempCharsOccurrences);
+			if (tempCharsOccurrences->Count == 0) {
+				break;
+			}
+			tempCharsOccurrences++;
+		}
+
+		int count = tempCharsOccurrences - charsOccurrences;
+		if (count == tLen) {
+
+
+		}
+
+		//while (*t != 0) {
+		//	getOccurrences(s, *t, &charsOccurrences[count]);
+		//	if (charsOccurrences[count].Count == 0) {
+		//		break;
+		//	}
+		//	count++;
+		//	t++;
+		//}
+
+		//for (size_t i = 0; i < count; i++) {
+		//	free(charsOccurrences[i].Positions);
+		//}
+
+
+		for (size_t i = 0; i < count; i++) {
+			free(charsOccurrences[i].Positions);
+		}
+		return "";
+
+		/*int sLen = strlen(s);
 		int* positions = (int*)malloc(sLen * sizeof(int));
 		char* marker = (char*)malloc(sLen * sizeof(char));
 
@@ -95,7 +172,7 @@ public:
 		static char output[100000 + 1];
 		strncpy(output, sMinWindow, minDistance);
 		output[minDistance] = 0;
-		return output;
+		return output;*/
 	}
 
 	TEST_METHOD(TestMethod1) {
